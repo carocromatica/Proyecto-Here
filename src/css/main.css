@@ -1,0 +1,20 @@
+/*materialize clases*/
+nav .sidenav-trigger {
+  float: right!important;
+}
+
+.row{
+  margin-bottom: 0px!important;
+}
+
+/*clase propias*/
+.badges{
+  padding-top:20px;
+}
+
+@media only screen and (max-width: 800px) {
+  /* For mobile phones: */
+  .badges{
+    padding-top:0px;
+}
+}
