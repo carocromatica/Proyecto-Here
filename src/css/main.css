@@ -7,14 +7,31 @@ nav .sidenav-trigger {
   margin-bottom: 0px!important;
 }
 
+.avatar{
+  border-radius: 50%;
+}
 /*clase propias*/
 .badges{
   padding-top:20px;
+  width: 80px;
 }
 
+.header-nav{
+  background-color: #00B09B;
+  color: white;
+}
+
+.header-nav li>a{
+  color:white!important;
+}
+
+.badges-content{
+background-color: #96C93D;
+}
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .badges{
     padding-top:0px;
 }
 }
+
