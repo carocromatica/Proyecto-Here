@@ -14,13 +14,24 @@ nav .brand-logo {
 }
 }
 
+.brand-logo{
+  margin: 5px;
+}
+
+nav {
+
+  height: 70px;
+}
+
 /*clase propias*/
 .avatar{
   border-radius: 50%;
+  margin: 10px;
+
 }
 
 .badges{
-  padding-top:20px;
+  padding-top:30px;
   width: 80px;
 }
 
@@ -33,15 +44,18 @@ nav .brand-logo {
   color:white!important;
 }
 
+.h6nav{    margin: 0%;
+  color: white;}
+  
 .badges-content{
 background-color: #96C93D;
-height: 8em;
+height: 9em;
 
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .badges{
-    padding-top:0px;
+    padding-top:15px;
 }
 }
 
