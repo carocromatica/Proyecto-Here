@@ -10,57 +10,58 @@
   <title>EcoGO!</title>
 </head>
 <body>
-  <nav class="green darken-4" role="navigation">
-    <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">
-        <img src="../../assets/img/icon_logo.png" alt="EcoGO">
-      </a>
-      <ul id="slide-out" class="sidenav">
-        <li>
-          <img src="../../assets/img/logo_side.png" class="responsive-img">
-        </li>
-        <li>
-          <a href="../html/perfil.html">
-            <i class="material-icons light-green-text text-darken-1">person</i> Perfil</a>
-
-          <a href="../html/map.html">
-            <i class="material-icons light-green-text text-darken-1">map</i> Mapa</a>
-
-          <a href="../html/ranking.html">
-            <i class="material-icons light-green-text text-darken-1">star</i> Ranking</a>
-
-          <a href="../html/canje.html">
-            <i class="material-icons light-green-text text-darken-1">card_giftcard</i> Canje</a>
-
-          <a href="../html/ayuda.html">
-            <i class="material-icons light-green-text text-darken-1">help</i>Ayuda</a>
-
-          <a href="#">
-            <i class="material-icons light-green-text text-darken-1" onclick="cerrarSesion()">exit_to_app</i> Cerrar Sesión</a>
-        </li>
-      </ul>
-      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
-        <i class="material-icons">menu</i>
-      </a>
-    </div>
-  </nav>
-
-  <section id="badges" class=" green darken-1">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m6 offset-m3 center-align">
-          <div class="col s4">
-            <img src="../../assets/img/goal_icon.png" class="responsive-img badges">
-          </div>
-          <div class="col s4">
-            <img src="../../assets/img/icon_user.png" class="responsive-img">
-          </div>
-          <div class="col s4">
-            <img src="../../assets/img/goal_icon.png" class="responsive-img badges">
-          </div>
+    <nav class="header-nav" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="#" class="brand-logo">
+            <img src="../../assets/img/icon_logo.png" alt="EcoGO">
+          </a>
+          <ul id="slide-out" class="sidenav header-nav">
+            <li class="white">
+              <img src="../../assets/img/logo_side.png" class="responsive-img">
+            </li>
+            <li>
+              <a href="../html/perfil.html">
+                <i class="material-icons white-text text-darken-1">person</i> Perfil</a>
+    
+              <a href="../html/map.html">
+                <i class="material-icons white-text text-darken-1">map</i> Mapa</a>
+    
+              <a href="../html/ranking.html">
+                <i class="material-icons white-text text-darken-1">star</i> Ranking</a>
+    
+              <a href="../html/canje.html">
+                <i class="material-icons white-text text-darken-1">card_giftcard</i> Canje</a>
+    
+              <a href="../html/ayuda.html">
+                <i class="material-icons white-text text-darken-1">help</i> Preguntas Frecuentes</a>
+    
+              <a href="#" onclick="cerrarSesion()">
+    
+                <i class="material-icons white-text text-darken-1">exit_to_app</i> Cerrar Sesión</a>
+            </li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
+            <i class="material-icons">menu</i>
+          </a>
         </div>
-      </div>
-  </section>
+    </nav>
+
+    <section id="badges" class=" badges-content">
+        <div class="container">
+          <div class="row">
+            <div class="col s12 m6 offset-m3 center-align">
+              <div class="col s4">
+                <img src="../../assets/img/avatars/crown.png" class="responsive-img badges">
+              </div>
+              <div class="col s4">
+                <img src="../../assets/img/avatars/pika.jpg" class="responsive-img avatar">
+              </div>
+              <div class="col s4">
+                <img src="../../assets/img/avatars/star.png" class="responsive-img badges">
+              </div>
+            </div>
+          </div>
+      </section>
 
   <section id="map">
     <div class="green darken-4">Canje de puntos</div>
