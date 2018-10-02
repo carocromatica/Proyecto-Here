@@ -18,6 +18,11 @@ nav .brand-logo {
   margin: 5px;
 }
 
+nav {
+
+  height: 70px;
+}
+
 /*clase propias*/
 .avatar{
   border-radius: 50%;
@@ -26,7 +31,7 @@ nav .brand-logo {
 }
 
 .badges{
-  padding-top:20px;
+  padding-top:30px;
   width: 80px;
 }
 
@@ -39,8 +44,13 @@ nav .brand-logo {
   color:white!important;
 }
 
+.h6nav{    margin: 0%;
+  color: white;}
+  
 .badges-content{
 background-color: #96C93D;
+height: 9em;
+
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
