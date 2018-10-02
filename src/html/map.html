@@ -11,7 +11,19 @@
     <title>Document</title>
 </head>
 <body>
-
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDWh59Qq-OUQydsC-AkQF0J-OVI5jdVzMc",
+        authDomain: "eco-go.firebaseapp.com",
+        databaseURL: "https://eco-go.firebaseio.com",
+        projectId: "eco-go",
+        storageBucket: "eco-go.appspot.com",
+        messagingSenderId: "109076383131"
+    };
+    firebase.initializeApp(config);
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>            
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="../js/materialize.js"></script> 

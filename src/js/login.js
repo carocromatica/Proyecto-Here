@@ -6,6 +6,8 @@ function login(){
 firebase.auth().signInWithEmailAndPassword(email, password)//  auntenticar email y contraseña
 .then(listo => {
     // colocar la redirección cuando el usuario inicie sesion
+    location='../html/map.html'
+
 console.log(listo);
 }).catch(function(error) {
     // errores de autenticación.
@@ -16,12 +18,3 @@ console.log(listo);
   });
 }
 
-// function cerrarSesion(){
-//     firebase.auth().signOut()
-//     .then(function(){
-//       console.log('Cerrando sesión....');
-//     })
-//     .catch(function(error){
-//       console.log(error);
-//     })
-//   }
