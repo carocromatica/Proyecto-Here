@@ -7,15 +7,25 @@ nav .sidenav-trigger {
   margin-bottom: 0px!important;
 }
 
+nav{
+  height: 75px!important;
+}
+
 @media only screen and (max-width: 992px){
 nav .brand-logo {
     left: 10%;
 }
 }
 
+.brand-logo{
+  margin: 5px;
+}
+
 /*clase propias*/
 .avatar{
   border-radius: 50%;
+  margin: 10px;
+
 }
 
 .badges{
@@ -38,7 +48,7 @@ background-color: #96C93D;
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .badges{
-    padding-top:0px;
+    padding-top:15px;
 }
 }
 
