@@ -7,10 +7,17 @@ nav .sidenav-trigger {
   margin-bottom: 0px!important;
 }
 
+@media only screen and (max-width: 992px){
+nav .brand-logo {
+    left: 10%;
+}
+}
+
+/*clase propias*/
 .avatar{
   border-radius: 50%;
 }
-/*clase propias*/
+
 .badges{
   padding-top:20px;
   width: 80px;
