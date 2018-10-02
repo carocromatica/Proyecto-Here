@@ -35,6 +35,8 @@ nav .brand-logo {
 
 .badges-content{
 background-color: #96C93D;
+height: 8em;
+
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */

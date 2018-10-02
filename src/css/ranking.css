@@ -1,13 +1,20 @@
 .ranking1{
-    margin: 1em;
+    margin: 2em;
 }
 .corona{
-    height: 3em !important;
+    height: 4em !important;
     margin-top: 1em;
 }
 .imgRanking{
-    height: 3em !important;
+    height: 5em !important;
+    margin: 1.5em;
 }
 .divj{
     width: 100%;
 }
+.pika2{
+    height: 5em !important;
+    width: 7em !important;
+}
+.h6nav{    margin: 0%;
+color: white;}
