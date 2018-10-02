@@ -27,7 +27,7 @@ let svgMarkup =
 
 
 //obtiene la posicion actual en el navegador.
-var queryOptions = { timeout: 5000, maximumAge: 20000, enableHighAccurace: false };
+var queryOptions = { timeout: 5000, maximumAge: 20000, enableHighAccurace: true };
 window.navigator.geolocation.getCurrentPosition(handle_geolocation_success, handle_geolocation_failures, queryOptions);
 
 function handle_geolocation_success(position) {//cuando tiene la posicion la reporta aqui.
@@ -86,6 +86,15 @@ function handle_geolocation_success(position) {//cuando tiene la posicion la rep
         lat: -33.602500,
         lng: -70.886200
     };
+
+
+    let puntosReciclaje = [
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200}
+    ];
 
 
     //Crea yb icono y pone u objeto en la latitud y longitud , y agrega una marca:
