@@ -4,5 +4,8 @@
 }
 .logo{
     height: 10em !important;
-    margin-top: 2em;
+    /* margin-top: 0.5em !important; */
+}
+.btnVolver{
+    margin: 0.5em;
 }
