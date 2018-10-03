@@ -2,7 +2,7 @@ var map;
 var platform;
 //Dibujo de un icono en SVG
 let svgMarkup =
-    '<svg version="1.0" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"' +
+    '<svg version="1.0" id="Capa_1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px"' +
     '	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">' +
     '<g>' +
     '	<path fill="#97B94F" d="M18.333,17.343c0.035-0.494,0.05-0.983,0.049-1.466c-0.507,0.292-1.079,0.49-1.695,0.569' +
@@ -27,7 +27,7 @@ let svgMarkup =
 
 
 //obtiene la posicion actual en el navegador.
-var queryOptions = { timeout: 5000, maximumAge: 20000, enableHighAccurace: false };
+var queryOptions = { timeout: 5000, maximumAge: 20000, enableHighAccurace: true };
 window.navigator.geolocation.getCurrentPosition(handle_geolocation_success, handle_geolocation_failures, queryOptions);
 
 function handle_geolocation_success(position) {//cuando tiene la posicion la reporta aqui.
@@ -49,7 +49,8 @@ function handle_geolocation_success(position) {//cuando tiene la posicion la rep
     // inicializacion del mapa:
     platform = new H.service.Platform({
         'app_id': 'xp2LMzBFCMvdU9TNRRjY',
-        'app_code': 'w1p60cUN3oTM8VhpR1B0ww'
+        'app_code': 'w1p60cUN3oTM8VhpR1B0ww',
+         useHTTPS: true
     });
 
     //obtiene el tipo de capa por defecto del mapa
@@ -86,6 +87,15 @@ function handle_geolocation_success(position) {//cuando tiene la posicion la rep
         lat: -33.602500,
         lng: -70.886200
     };
+
+
+    let puntosReciclaje = [
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200},
+        { lat: -33.602500, lng: -70.886200}
+    ];
 
 
     //Crea yb icono y pone u objeto en la latitud y longitud , y agrega una marca:
