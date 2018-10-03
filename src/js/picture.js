@@ -1,3 +1,4 @@
+//contiene js que es importante
 const constraints = {
     video: true
   };
