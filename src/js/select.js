@@ -1,3 +1,16 @@
+firebase.auth().onAuthStateChanged(function (user) {
+  if (user) {
+    let usermail = firebase.auth().currentUser.email;
+    document.getElementById("usermail").innerHTML = usermail;
+
+   
+  } else {
+    window.location = "index.html";
+  }
+});
+
+
+
 function selectElfa(){
   alert('elegiste a elfa')
   document.getElementById("PERSONAJE").src = "../../assets/img/avatars/elfa.png";

@@ -1,18 +1,23 @@
-function register(){
+function register() {
     const email = document.getElementById('email').value;
-    const password= document.getElementById('password').value;
+    const password = document.getElementById('password').value;
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then(resp => {
-        console.log(resp);
-        location='../html/map'
-        })
-    .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorCode)
-        console.log(errorMessage)
-        // ...
+    .then((userData) => {
+        return firebase.database().ref(`usuarios/${userData.user.uid}`).set({
+            username: name,
+            mail: userData.user.email,
+            uid: userData.user.uid,
+        });
+    }).then(()=>{
+        alert("Registro con exito")
+       window.location='../html/map.html'
+    })
+    .catch((error) => {
+        console.log("Error de Firebase > Codigo > " + error.code);
+        console.log("Error de Firebase > Mensaje > " + error.message);
+
     });
-  
+
 }
+
