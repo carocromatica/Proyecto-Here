@@ -5,13 +5,13 @@ function register() {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userData) => {
         return firebase.database().ref(`usuarios/${userData.user.uid}`).set({
-            username: name,
+            
             mail: userData.user.email,
             uid: userData.user.uid,
         });
     }).then(()=>{
         alert("Registro con exito")
-       window.location='../html/map.html'
+       window.location='../html/avatar.html'
     })
     .catch((error) => {
         console.log("Error de Firebase > Codigo > " + error.code);
