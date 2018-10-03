@@ -1,5 +1,9 @@
  const listado = document.getElementById('listado');
  console.log(listado);
+
+ $(document).ready(function(){ // Inicializar checkbox
+    $('select').formSelect();
+  });
  
  //objeto que tiene el listado de los lugares de reciclaje
  let ecoPlaces = [
