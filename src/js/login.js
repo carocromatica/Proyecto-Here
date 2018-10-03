@@ -15,6 +15,8 @@ console.log(listo);
     var errorMessage = error.message;
     console.log(errorCode)
     console.log(errorMessage)
+    errores.innerHTML= '';
+    errores.innerHTML +=`<p class='red-text'>${"Oops! Contraseña o Email inválido"}</p>`
   });
 }
 
@@ -38,3 +40,4 @@ function facebook(){
       // ...
     });
     }
+    
