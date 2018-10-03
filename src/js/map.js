@@ -1,9 +1,64 @@
-var map;
-var platform;
-//Dibujo de un icono en SVG
-let svgMarkup =
-    '<svg version="1.0" id="Capa_1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink" x="0px" y="0px"' +
-    '	 width="32px" height="32px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">' +
+ const listado = document.getElementById('listado');
+ console.log(listado);
+ 
+ //objeto que tiene el listado de los lugares de reciclaje
+ let ecoPlaces = [
+	{position: {lat: -33.4189088, lng: -70.6422443}, decripcion : " Punto Eco-Go Laboratoria", distancia: 0},
+ 	{position: {lat: -33.4188, lng: -70.6424}, decripcion : "Punto Eco-Go Star", distancia: 0},
+ 	{position: {lat: -33.4180, lng: -70.6433}, decripcion : "Punto Eco-Go Golden", distancia: 0},
+ 	{position: {lat: -33.4194, lng: -70.6405}, decripcion : "Punto Eco-Go Silver", distancia: 0},
+ 	{position: {lat: -33.4170, lng: -70.6405}, decripcion : "Punto Eco-Go Platinum", distancia: 0},
+ 	{position: {lat: -33.4184, lng: -70.6396}, decripcion : "Punto Eco-Go Diamond", distancia: 0}
+ ];
+
+//Paso 1: inicializar la plataforma
+platform = new H.service.Platform({
+	'app_id': 'xp2LMzBFCMvdU9TNRRjY',
+	'app_code': 'w1p60cUN3oTM8VhpR1B0ww',
+	useHTTPS: true
+});
+
+let pixelRatio = window.devicePixelRatio || 1;
+let defaultLayers = platform.createDefaultLayers({
+  tileSize: pixelRatio === 1 ? 256 : 512,
+  ppi: pixelRatio === 1 ? undefined : 320
+});
+
+//Paso 2: inicializar el mapa, pre configurando un lugar y zoom
+let map = new H.Map(document.getElementById('mapContainer'),
+  defaultLayers.normal.map,{
+  center: {lat: -33.4189088, lng: -70.6422443},
+  zoom: 16,
+  pixelRatio: pixelRatio
+});
+
+/*
+// Crea un MapTileService instancia para l(i.e. base.map.api.here.com):
+var mapTileService = platform.getMapTileService({ 'type': 'map' });
+var fleetStyleLayer = mapTileService.createTileLayer(
+  'maptile', 
+  'normal.day', 
+  256, 
+  'png8', 
+  { 'style': 'fleet' });
+  
+// Set the new fleet style layer as a base layer on the map:
+map.setBaseLayer(fleetStyleLayer);
+*/
+
+
+//Paso 3: hacer el mapa interactivo
+// MapEvents obtener eventos del sistema
+// Behavior implementa el pan/zoom 
+let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+// crea la interfaces de usuario por defecto en el mapa 
+let ui = H.ui.UI.createDefault(map, defaultLayers);
+
+//Sgv del icono de EcoGO
+let svgMarkup = 
+    '<svg version="1.0" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"' +
+    '	 width="48px" height="48px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">' +
     '<g>' +
     '	<path fill="#97B94F" d="M18.333,17.343c0.035-0.494,0.05-0.983,0.049-1.466c-0.507,0.292-1.079,0.49-1.695,0.569' +
     '		c-2.493,0.317-4.773-1.446-5.09-3.94c-0.318-2.494,1.446-4.773,3.94-5.09c0.447-0.058,0.887-0.047,1.311,0.022' +
@@ -25,207 +80,36 @@ let svgMarkup =
     '	c0.777,1.509,0.598,2.193,0.598,2.193L15.502,4.474z"/>' +
     '</svg>';
 
+//Crea el icono de tipo map.icon con el sgv de ecoGo
+let iconoEcoGo = new H.map.Icon(svgMarkup);
 
-//obtiene la posicion actual en el navegador.
-var queryOptions = { timeout: 5000, maximumAge: 20000, enableHighAccurace: true };
-window.navigator.geolocation.getCurrentPosition(handle_geolocation_success, handle_geolocation_failures, queryOptions);
+//crea una marca con la posicion indicada
+let markerUser = new H.map.Marker({ lat: -33.4189088, lng: -70.6422443 });//, { icon: iconoEcoGo });
+map.addObject(markerUser);
 
-function handle_geolocation_success(position) {//cuando tiene la posicion la reporta aqui.
-    var buffer = "";
-    var lastPosition = position.coords.latitude + ',' + position.coords.longitude;
-
-    //informacion de el posicionamiento.
-    buffer += 'Timestamp: ' + position.timestamp;
-    buffer += '\nLatitud/Longitud (en grados decimales): ' + position.coords.latitude + ',' + position.coords.longitude;
-    buffer += '\nPrecision (en metros): ' + position.coords.accuracy;
-    buffer += '\nAltitud: ' + position.coords.altitude;
-    buffer += '\nVelocidad (metros/segundo): ' + position.coords.speed;
-    buffer += '\nDireccion (grados decimales): ' + position.coords.heading;
-
-    //resultado de los datos del posicionamiento en la consola
-    console.log(buffer);
+//Coloca las marcas de cada uno de los lugares de reciclaje
+ecoPlaces.forEach(function(ecoMarker) {
+	let markerUser = new H.map.Marker(ecoMarker.position, { icon: iconoEcoGo });
+	map.addObject(markerUser);
+	console.log(listado);
+	listado.innerHTML += '<p>' + ecoMarker.decripcion + '</p>';
+});
 
 
-    // inicializacion del mapa:
-    platform = new H.service.Platform({
-        'app_id': 'xp2LMzBFCMvdU9TNRRjY',
-        'app_code': 'w1p60cUN3oTM8VhpR1B0ww',
-         useHTTPS: true
-    });
+//Actualiza el mapa con la posicion actual cada 1 segundo.
+function autoUpdate() {
+  navigator.geolocation.getCurrentPosition(function(position) {  
 
-    //obtiene el tipo de capa por defecto del mapa
-    var maptypes = platform.createDefaultLayers();
+    map.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});
+    markerUser.setPosition({lat:position.coords.latitude, lng:position.coords.longitude});
 
-    // inicializa el objeto mapa, elije el div donde lo colocara y lo configura :
-    map = new H.Map(
-        document.getElementById('mapContainer'),//contenedor html en donde estara el mapa
-        maptypes.normal.map,//tipo de mapa normal.
-        {
-            zoom: 16,//zoom mientras mas alto el numero mas cerca
-            center: { lng: position.coords.longitude, lat: position.coords.latitude } // latitud y longitud de la posicion central del mapa
-        });
-
-    var ui = H.ui.UI.createDefault(map, maptypes, 'es-ES');//controles del mapa y el idioma  'es-ES' (español)
-    /*
-        ui.getControl('mapsettings').setEnabled(false);
-        ui.getControl('zoom').setEnabled(false);
-        ui.getControl('panorama').setEnabled(false);
-    */
-
-    //una marca de la posicion (Posicion actual)
-    position = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-    };
-
-    marker = new H.map.Marker(position); //crea una marca con la posicion
-    map.addObject(marker);//agrega la marca en el mapa
-
-
-
-    let position2 = {
-        lat: -33.602500,
-        lng: -70.886200
-    };
-
-
-    let puntosReciclaje = [
-        { lat: -33.602500, lng: -70.886200},
-        { lat: -33.602500, lng: -70.886200},
-        { lat: -33.602500, lng: -70.886200},
-        { lat: -33.602500, lng: -70.886200},
-        { lat: -33.602500, lng: -70.886200}
-    ];
-
-
-    //Crea yb icono y pone u objeto en la latitud y longitud , y agrega una marca:
-    var icon = new H.map.Icon(svgMarkup),
-        //coords = {lat: position.coords.latitude , lng: position.coords.longitude },
-        marker = new H.map.Marker(position2, { icon: icon });
-
-    //agrega una marca en el mapa
-    map.addObject(marker);
-    //map.setCenter(coords);
-
-    // Activa eventos en el mapa:
-    var mapEvents = new H.mapevents.MapEvents(map);
-
-    //Agrega un evento tap:
-    map.addEventListener('tap', function (evt) {
-        //escribe en la consola el tab:
-        console.log(evt.type, evt.currentPointer.type);
-    });
-
-    activarRuta(position);
-
-
+  }); 
+  setTimeout(autoUpdate, 1000);
 }
+//evento click del raton para poder hacer la ubicacion de los puntos ecologicos.
+map.addEventListener('tap', function (evt) {
+	let coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
+	console.log('pinchaste en ' + Math.abs(coord.lat.toFixed(4)) + ((coord.lat > 0) ? 'N' : 'S') + ' ' + Math.abs(coord.lng.toFixed(4)) + ((coord.lng > 0) ? 'E' : 'W'));
+});
 
-function handle_geolocation_failures(error) {  //resuelve si el navegador da algun problema con la geoposicionamiento.
-    var appErrMessage = null;
-
-    if (error.core == error.PERMISSION_DENIED) {
-        appErrMessage = "El usuario no ha concedido los privilegios de geolocalización";
-    } else if (error.core == error.POSITION_UNAVAILABLE) {
-        appErrMessage = "Posicion no disponible";
-    } else if (error.core == error.TIMEOUT) {
-        appErrMessage = "Demasiado tiempo intentando obtener la localización del usuario.";
-    } else if (error.core == error.UNKNOWN) {
-        appErrMessage = "Error desconocido";
-    } else {
-        appErrMessage = "Error insesperado";
-    }
-    console.log(appErrMessage);
-
-    /*
-    $("#location_output").val(appErrMessage);
-    */
-
-}
-
-
-function activarRuta(position) {
-    // Create the parameters for the routing request:
-    console.log('waypoint0 : geo!' + position.lat + ', ' + position.lng);
-
-    var routingParameters = {
-        // The routing mode:
-        'mode': 'fastest;pedestrian',//'fastest;car',
-        // The start point of the route:
-        'waypoint0': 'geo!' + position.lat + ',' + position.lng,
-        // The end point of the route:
-        'waypoint1': 'geo!-33.422333,-70.644819',
-        // To retrieve the shape of the route we choose the route
-        // representation mode 'display'
-        'representation': 'display'
-    };
-
-    // Define a callback function to process the routing response:
-    var onResult = function (result) {
-        var route,
-            routeShape,
-            startPoint,
-            endPoint,
-            linestring;
-        if (result.response.route) {
-            // Pick the first route from the response:
-            route = result.response.route[0];
-            // Pick the route's shape:
-            routeShape = route.shape;
-
-            // Create a linestring to use as a point source for the route line
-            linestring = new H.geo.LineString();
-
-            // Push all the points in the shape into the linestring:
-            routeShape.forEach(function (point) {
-                var parts = point.split(',');
-                linestring.pushLatLngAlt(parts[0], parts[1]);
-            });
-
-            // Retrieve the mapped positions of the requested waypoints:
-            startPoint = route.waypoint[0].mappedPosition;
-            endPoint = route.waypoint[1].mappedPosition;
-
-            // Create a polyline to display the route:
-            var routeLine = new H.map.Polyline(linestring, {
-                style: { strokeColor: 'green', lineWidth: 5 }
-            });
-
-            // Create a marker for the start point:
-            var startMarker = new H.map.Marker({
-                lat: startPoint.latitude,
-                lng: startPoint.longitude
-            });
-
-            let positionFinal = {
-                lat: endPoint.latitude,
-                lng: endPoint.longitude
-            };
-            var icon = new H.map.Icon(svgMarkup);
-
-            // Create a marker for the end point:
-            var endMarker = new H.map.Marker(positionFinal, { icon: icon });
-
-
-
-            // Add the route polyline and the two markers to the map:
-            map.addObjects([routeLine, startMarker, endMarker]);
-
-            // Set the map's viewport to make the whole route visible:
-            map.setViewBounds(routeLine.getBounds());
-        }
-    };
-
-    // Get an instance of the routing service:
-    var router = platform.getRoutingService();
-
-    // Call calculateRoute() with the routing parameters,
-    // the callback and an error callback function (called if a
-    // communication error occurs):
-    router.calculateRoute(routingParameters, onResult,
-        function (error) {
-            alert(error.message);
-        });
-
-
-}
+autoUpdate();
