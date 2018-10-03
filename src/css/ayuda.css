@@ -23,6 +23,13 @@ p{
 
 .textP{
     color:#8190A5;
-    margin-left: 25px;
-    margin-right: 25px;
+    text-align: justify;
+    /* margin-left: 25px;
+    margin-right: 25px; */
+}
+.badges1{
+    height: 4em !important;
+}
+.rowCamb{
+    padding: 0% !important;
 }
