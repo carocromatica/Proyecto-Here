@@ -15,17 +15,14 @@ Con esta aplicación se aumentará los lugares de reciclaje y se motivara a las 
 </p>
 Infografía: León Navarro | Contenido: Javier Neira R. Fuente: Greenpeace / 3ra Encuesta Nacional del Medio Ambiente
 
-###Arquetipo
+### Arquetipo
 
 A través nuestra investigación establecimos que existe dos tipos de arquetipos de usuarios de nuestra APP: 
 1) Personas que quieren llevar una vida saludable y ecológica.
-FOTO
 
 2) Personas que les gustaría que fuera más fácil reciclar y acorde a su vida diaria.
 
-FOTO
-
-###Diseño
+### Diseño
 Para diseñar la aplicación se realizó un sketch de baja fidelidad, una guía de estilo y un sketch de alta fidelidad.
 *  Se creo una aplicación web que impulsara a las personas a reciclar por medio de “Eco Go! puntos” y puntaje. 
 
@@ -44,8 +41,10 @@ Para diseñar la aplicación se realizó un sketch de baja fidelidad, una guía 
 </p>
 
 * Los puntos se pueden canjear por productos o descuentos con locales asociados.
+<p align="center">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/vista.jpg">
+</p>
 
-FOTOOO
 
 Conoce a través del siguiente link el prototipo de alta fidelidad para dispositivo [Android](https://marvelapp.com/5jd12ed/screen/48496548).
 
