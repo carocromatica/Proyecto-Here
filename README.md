@@ -1,11 +1,11 @@
-##Proyecto Laboratoria – HERE: Eco Go!
+## Proyecto Laboratoria – HERE: Eco Go!
 
 Eco go! Es una aplicación  web que incentiva a las personas a reciclar. Y las ayuda a encontrar “Eco go! Puntos”, por medio del GPS y del mapa de HERE.
  ¿Qué son los “Eco Go! Puntos”?
 Son lugares establecidos para reciclar: Cartón, vidrio, plástico y tetra.
 Estos puntos están marcados en el mapa de la aplicación, cada vez que vayas y saques una foto reciclando, ¡ganarás puntos!. Estos puntos pueden ser cambiados por productos o descuentos en tiendas. 
 
-###Contexto
+### Contexto
 
 Decidimos crear esta aplicación, debido a que según la información de Greenpeace Chile, cada chileno produce 1.1 kilos de basura diaria, y el 80% no recicla su basura de manera habitual. Existe dos grandes razones por la que sucede esto: Pocos y desconocidos centros de reciclaje y  falta de costumbre. 
 Con esta aplicación se aumentará los lugares de reciclaje y se motivara a las personas  a reciclar. 
