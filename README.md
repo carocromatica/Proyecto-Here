@@ -11,7 +11,7 @@ Decidimos crear esta aplicación, debido a que según la información de Greenpe
 Con esta aplicación se aumentará los lugares de reciclaje y se motivara a las personas  a reciclar. 
 
 <p align="center">
-  <img src="">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/info.jpeg">
 </p>
 Infografía: León Navarro | Contenido: Javier Neira R. Fuente: Greenpeace / 3ra Encuesta Nacional del Medio Ambiente
 
@@ -34,6 +34,14 @@ Para diseñar la aplicación se realizó un sketch de baja fidelidad, una guía 
 * Creamos un logo de ubicación en forma de hoja de árbol que representa el reciclaje.
 
 * Diseñamos personajes (avatares) para los usuarios. 
+<p align="center">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/chicaRuda.png">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/elfa.png">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/huesos.png">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/mago.png">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/muerte.png">
+  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/ux/fotos_readme/orco.png">
+</p>
 
 * Los puntos se pueden canjear por productos o descuentos con locales asociados.
 
