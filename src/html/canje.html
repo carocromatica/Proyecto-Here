@@ -43,7 +43,7 @@
                 <i class="material-icons white-text text-darken-1">exit_to_app</i> Cerrar Sesión</a>
             </li>
           </ul>
-          <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large">
+          <a  data-target="slide-out" class="sidenav-trigger show-on-large">
             <i class="material-icons">menu</i>
           </a>
         </div>
@@ -55,12 +55,15 @@
             <div class="col s12 m6 offset-m3 center-align">
               <div class="col s4">
                 <img src="../../assets/img/avatars/crown.png" class="responsive-img badges">
+                <h6 class="h6nav">Nivel:1</h6>
               </div>
               <div class="col s4" id="milely">
                 <div id="personaje"></div>
+                <h6 id="usermail" class="h6nav"></h6>
               </div>
               <div class="col s4">
                 <img src="../../assets/img/avatars/star.png" class="responsive-img badges">
+                <h6 class="h6nav">500px</h6>
               </div>
             </div>
           </div>
@@ -79,7 +82,7 @@
             <div >
                 <div class="col s6 textoCanje  ">
                   <h6>Pizza</h6>
-                  <p>2.000pts</p>
+                  <p>8.000pts</p>
                 </div>
                 <div class="col s6">
                     <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
@@ -92,7 +95,7 @@
             <div>
               <div class="col s6  left">
                 <h6>Papas</h6>
-                <p>2.000pts</p>
+                <p>1.000pts</p>
               </div>
               <div class="col s6">
                   <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
@@ -107,7 +110,7 @@
               <div >
                   <div class="col s6 textoCanje  ">
                     <h6>Café</h6>
-                    <p>2.000pts</p>
+                    <p>600pts</p>
                   </div>
                   <div class="col s6">
                       <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
@@ -120,7 +123,7 @@
               <div>
                 <div class="col s6 left">
                   <h6>Big</h6>
-                  <p>2.000pts</p>
+                  <p>5.000pts</p>
                 </div>
                 <div class="col s6 right">
                     <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
@@ -128,6 +131,33 @@
               </div>
             </div>
           </div>
+          <div class=" col s12 m6 offset-m3" >
+              <div class="col s6 card">     
+                  <img class="imgCanje" src="../../assets/img/pelota.jpg" alt="pizza">
+                <div >
+                    <div class="col s6 textoCanje  ">
+                      <h6>Balón</h6>
+                      <p>10.000pts</p>
+                    </div>
+                    <div class="col s6">
+                        <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
+                    </div>
+                </div>
+              </div>
+    
+              <div class="col s6 card">
+                <img class="imgCanje" src="../../assets/img/unas.jpg" alt="Papas Fritas">
+                <div>
+                  <div class="col s6  left">
+                    <h6>Manicure</h6>
+                    <p>10.000pts</p>
+                  </div>
+                  <div class="col s6">
+                      <a class="btn-floating btn-large red btn modal-trigger" href="#modal1">10%</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
       </div>
       <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
@@ -167,6 +197,8 @@
   <script src="../js/cerrarSesion.js"></script>
   <script src="../js/materialize.js"></script>
   <script src="../js/nav.js"></script><!--para ocultar sidenav-->
+    <script src="../js/select.js"></script>
+
 </body>
 
 </html>

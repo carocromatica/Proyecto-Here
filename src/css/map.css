@@ -21,3 +21,25 @@
     color: #8190A5;
 }
 
+.card .card-content {
+     padding: 0px 24px 0px 24px;
+   
+}
+
+.modal .modal-content{
+    text-align: center;
+}
+
+.tamanio{
+    height: 100px;
+    width: 100px;
+}
+
+.iconoPhoto{
+    font-size: 70px !important;
+    margin-top: 30px;
+}
+
+.modal{
+    border-radius: 20px;
+}
