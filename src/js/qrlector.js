@@ -5,7 +5,8 @@ scanner.addListener('scan', content => {
     //let result= document.getElementById('txtResultado');
     //result.innerHTML = content;
     //alert("tu codigo QR dice:" + content);
-    window.location = "../html/picture.html?id=" + content;
+    localStorage.setItem("selectQR",content);
+    window.location = "../html/picture.html";
 });
 Instascan.Camera.getCameras().then( cameras => {
     if(cameras.length > 0){

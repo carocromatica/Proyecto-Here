@@ -69,6 +69,11 @@ const constraints = {
   */  
 
 function SendFB(){
+    let idSelecionado = localStorage.getItem("selectId");
+    let armaSelecionado = localStorage.getItem("selectArma");
+    let qrSelecionado = localStorage.getItem("selectQR");
+
+
     FB.login(function(response) {
         if (response.status === 'connected') {
             var blob = dataURLtoBlob(img.src);
@@ -79,18 +84,18 @@ function SendFB(){
                 } else if (response.status === "not_authorized") {
                     FB.login(function (response) {
                         postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-                    }, {scope: "publish_actions"});
+                    }, {scope: "publish_stream, public_profile, publish_pages, manage_pages"});
                 } else {
                     FB.login(function (response) {
                         postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-                    }, {scope: "publish_actions"});
+                    }, {scope: "publish_stream, public_profile, publish_pages, manage_pages"});
                 }
             });
         } else {
             alert("Lo siento, no pudiste logearte a facebook");
           // The person is not logged into this app or we are unable to tell. 
         }
-      }, {scope: 'email,user_likes, public_profile'});
+      }, {scope: 'email,user_likes, publish_stream, public_profile, publish_pages, manage_pages'});
 
 }
 

@@ -1,14 +1,15 @@
 const listado = document.getElementById('listContent'); 
 const distanciaFalta = document.getElementById('distanciaFalta'); 
+const arma = document.getElementById('arma');
 let selectedMarket;
 
 let caminando = false;
 console.log(listado);
-
+/*
 $(document).ready(function(){ // Inicializar checkbox
    $('select').formSelect();
  });
-
+*/
 //objeto que tiene el listado de los lugares de reciclaje
 let ecoPlaces = [
     {id:0125630, position: {lat: -33.4189, lng: -70.6422}, decripcion : "Punto Eco-Go Laboratoria", distancia: 0},
@@ -25,7 +26,7 @@ platform = new H.service.Platform({
    'app_code': 'w1p60cUN3oTM8VhpR1B0ww',
    useHTTPS: true
 });
-
+console.log(window.devicePixelRatio);
 let pixelRatio = window.devicePixelRatio || 1;
 let defaultLayers = platform.createDefaultLayers({
  tileSize: pixelRatio === 1 ? 256 : 512,
@@ -94,6 +95,23 @@ let iconoEcoGo = new H.map.Icon(svgMarkup);
 //crea una marca con la posicion indicada
 let markerUser = new H.map.Marker({ lat: -33.4189088, lng: -70.6422443 });//, { icon: iconoEcoGo });
 map.addObject(markerUser);
+let radioAccion = new H.map.Circle(
+    // Centro del circulo
+    { lat: -33.4189088, lng: -70.6422443 },
+    // radio del circulo en metros
+    250,
+    {
+      style: {
+        strokeColor: 'rgba(55, 85, 170, 0)', // color de la orilla del circulo
+        lineWidth: 0, //ancho de la orilla
+        fillColor: 'rgba(255,255,191, 0.4)'  // color de fondo del circulo
+      }
+    }
+  );
+map.addObject(radioAccion);
+
+
+
 
 listado.innerHTML = '';
 //Coloca las marcas de cada uno de los lugares de reciclaje
@@ -113,6 +131,7 @@ function ordenarLugares(){
  listado.innerHTML = '';
  ecoPlaces.sort(function (a, b) {
    return (a.distancia - b.distancia)
+
  }).forEach(function(ecoMarker) {
  
    addLugares(ecoMarker)
@@ -149,19 +168,22 @@ function addLugares(ecoMarker){
 
 //Actualiza el mapa con la posicion actual cada 1 segundo.
 function updaeteLocation(position) {
-   map.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});
-   markerUser.setPosition({lat:position.coords.latitude, lng:position.coords.longitude});
+   map.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});//centra el mapa en la posicion del usuario
+   markerUser.setPosition({lat:position.coords.latitude, lng:position.coords.longitude});//centra la marca en la posicion del usuario
+   radioAccion.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});//centra el circulo en la posicion del usuario
+
    if(caminando === false){
     ecoPlaces.forEach(function(ecoMarker) {
         let distancia = ecoMarker.marca.getPosition().distance({lat:position.coords.latitude, lng:position.coords.longitude});
         ecoMarker.distancia = distancia;
-        console.log( ecoMarker);
+        //console.log( ecoMarker);
       });
       ordenarLugares();
    
    }else{
     let distancia = selectedMarket.marca.getPosition().distance({lat:position.coords.latitude, lng:position.coords.longitude});
-    distanciaFalta.innerHTML = distancia.toFixed(0) + "mts";
+    radioAccion.setRadius(distancia);
+    distanciaFalta.innerHTML = distancia.toFixed(0) + ' mts';
     
    }
 }
@@ -264,5 +286,10 @@ function showRoute(ecoFound){
 
 }
 function qrGo(){
+    console.log(selectedMarket.id);
+    console.log(arma.value);
+    localStorage.setItem("selectId", selectedMarket.id); 
+    localStorage.setItem("selectArma",arma.value);
+
     window.location = "../html/qrlector.html"
 }
