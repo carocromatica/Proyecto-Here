@@ -30,7 +30,7 @@ nav {
 }
 
 .badges{
-  padding-top:30px;
+  padding-top:10px;
   width: 80px;
 }
 
@@ -53,6 +53,13 @@ height: 9em;
 }
 
 .profile{
+  margin: 0px!important;
+  color: white;
+  font-weight: bold;
+  
+}
+
+.puntos{
   margin: 0px!important;
   color: white;
   font-weight: bold;
