@@ -2,10 +2,18 @@
     margin: 0%;
     padding: 0%
 }
+body{
+    font-family: 'Roboto', sans-serif;
+}
 .logo{
     height: 10em !important;
     margin-top: 2em;
 }
 .colorFaceb{
     background-color: #3b5998;
+    bottom: 2em;
+    width: 70%;
+}
+.btninit{
+    width: 70%; 
 }

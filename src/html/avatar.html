@@ -50,28 +50,32 @@
     </div>
   </nav>
 
-  <section id="badges" class=" badges-content">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 m6 offset-m3 center-align">
-          <div class="col s4">
-            <img src="../../assets/img/avatars/crown.png" class="responsive-img badges">
-          </div>
-          <div class="col s4" id="milely">
-            <div id="personaje"></div>
-          </div>
-          <div class="col s4">
-            <img src="../../assets/img/avatars/star.png" class="responsive-img badges">
+  <section id="badges" class="badges-content">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m6 offset-m3 center-align">
+            <div class="col s4">
+              <img src="../../assets/img/avatars/crown.png" class="responsive-img badges">
+              <p class="puntos">Nivel : 01</p>
+            </div>
+            <div class="col s4" id="milely" >
+                <div id="personaje"></div>
+                
+              </div>
+            <div class="col s4">
+              <img src="../../assets/img/avatars/star.png" class="responsive-img badges">
+              <p id="puntaje" class="puntos"></p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+        </div>
+    </section>
 
   <section id="Select">
     <div class="container">
       <div class="row">
         <div class="col s12 m6 offset-m3">
+          <h4 class="center-align">Elige tu personaje</h4>
           <div class="carousel center-align">
             <div class="carousel-item">
               <img src="../../assets/img/avatars/elfa.png">
@@ -89,16 +93,29 @@
               <img src="../../assets/img/avatars/exportar.png">
               <button class="btn" onclick="selectRobin()">Robin</button>
             </div>
-          </div>
+          </div>         
+            <div class="input-field">
+              <input  id="alias" type="text" class="validate">
+              <label class="active" for="alias">Ingresa tu Alias</label>
+            </div>
+            <button class="btn  modal-trigger" href="#modal1" onclick="createAlias()">Guardar</button>
+            <button class="btn" onclick="sumarPuntos()">puntos extra</button>
         </div>
       </div>
     </div>
 
-    <p id="usermail"></p>
-     <p id="asd"></p>
-
-
   </section>
+  
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>ganaste 500 puntos!</p>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger" href="../html/map.html">empezar</a>
+      </div>
+    </div>
 
 
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>

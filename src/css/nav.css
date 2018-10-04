@@ -18,6 +18,9 @@ nav {
   height: 75px;
 }
 
+.carousel{
+  bottom: 6em;
+}
 
 /*clase propias*/
 .avatar{
@@ -27,7 +30,7 @@ nav {
 }
 
 .badges{
-  padding-top:30px;
+  padding-top:10px;
   width: 80px;
 }
 
@@ -47,6 +50,19 @@ nav {
 background-color: #96C93D;
 height: 9em;
 
+}
+
+.profile{
+  margin: 0px!important;
+  color: white;
+  font-weight: bold;
+  
+}
+
+.puntos{
+  margin: 0px!important;
+  color: white;
+  font-weight: bold;
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */

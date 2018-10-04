@@ -1,0 +1,32 @@
+.imgs{
+    height: 50px !important;
+    width: 50px !important;
+}
+.divimg{
+    height: 70px !important;
+}
+.mundo{
+    height: 2.5em !important;
+    width: 2.5em !important;
+}
+/* .divmundo{
+    height: 100% !important;
+    width: 100%
+} */
+p{
+    color: white !important;
+}
+.padimg{
+    height: 10em !important;
+    width: 15em !important;
+}
+.regalo{
+    height: 6em !important;
+    width: 6em !important;
+}
+.p-lugar{
+    margin-top: 80%;
+}
+.container{
+    margin-top: 2em
+}
