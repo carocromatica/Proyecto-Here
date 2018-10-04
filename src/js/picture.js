@@ -59,12 +59,48 @@ const constraints = {
     return new Blob([u8arr], {type:mime});
   }
 
+function callFB(){
+    var faceWin = window.open('https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Fcarocromatica.github.io%2FProyecto-Here%2F&picture=https%3A%2F%2Fi.imgur.com%2F1u9qQLh.png&name=holo%20&caption=%20&description=ojala%20funcione%20esta%20wea&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F"',
+    'Facebook',
+    'left=20,top=20,width=500,height=500,toolbar=1,resizable=0');
+    faceWin.document.write("<script type = 'text/javascript'>alert('eres mio facebook'); </script>");
+}
+
 function SendFB(){
     let idSelecionado = localStorage.getItem("selectId");
     let armaSelecionado = localStorage.getItem("selectArma");
     let qrSelecionado = localStorage.getItem("selectQR");
 
-    
+    let Puntos = 0;
+    switch(armaSelecionado) {
+        case 1:
+        Puntos = 100;
+        break;
+        case 2:
+        Puntos = 350;
+        break;
+        case 3:
+        Puntos = 250;
+        break;
+        case 4:
+        Puntos = 450;
+        break;
+    } 
+
+    let puntosObt = 0;
+
+    firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos/puntaje`)
+    .on("child_added", (puntos) => {
+        puntosObt = puntos.val();
+    });
+
+    let totalPuntos = puntosObt + Puntos;
+
+    const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
+    firebase.database().ref(`usuarios/${currentUser.uid}/puntos/puntaje`).update({
+        totalPuntos 
+    });
+
 /*
     var blob = dataURLtoBlob(img.src);
     FB.getLoginStatus(function (response) {
