@@ -1,18 +1,23 @@
-const listado = document.getElementById('listContent');
-console.log(listado);
+const listado = document.getElementById('listContent'); 
+const distanciaFalta = document.getElementById('distanciaFalta'); 
+const arma = document.getElementById('arma');
+let selectedMarket;
 
+let caminando = false;
+console.log(listado);
+/*
 $(document).ready(function(){ // Inicializar checkbox
    $('select').formSelect();
  });
-
+*/
 //objeto que tiene el listado de los lugares de reciclaje
 let ecoPlaces = [
-   {id:0, position: {lat: -33.4189088, lng: -70.6422443}, decripcion : " Punto Eco-Go Laboratoria", distancia: 0},
-    {id:1, position: {lat: -33.4188, lng: -70.6424}, decripcion : "Punto Eco-Go Star", distancia: 0},
-    {id:2, position: {lat: -33.4180, lng: -70.6433}, decripcion : "Punto Eco-Go Golden", distancia: 0},
-    {id:3, position: {lat: -33.4194, lng: -70.6405}, decripcion : "Punto Eco-Go Silver", distancia: 0},
-    {id:4, position: {lat: -33.4170, lng: -70.6405}, decripcion : "Punto Eco-Go Platinum", distancia: 0},
-    {id:5, position: {lat: -33.4184, lng: -70.6396}, decripcion : "Punto Eco-Go Diamond", distancia: 0}
+    {id:0125630, position: {lat: -33.4189, lng: -70.6422}, decripcion : "Punto Eco-Go Laboratoria", distancia: 0},
+    {id:1896548, position: {lat: -33.4188, lng: -70.6424}, decripcion : "Punto Eco-Go Star", distancia: 0},
+    {id:2589635, position: {lat: -33.4180, lng: -70.6433}, decripcion : "Punto Eco-Go Golden", distancia: 0},
+    {id:3070586, position: {lat: -33.4194, lng: -70.6405}, decripcion : "Punto Eco-Go Silver", distancia: 0},
+    {id:4478514, position: {lat: -33.4170, lng: -70.6405}, decripcion : "Punto Eco-Go Platinum", distancia: 0},
+    {id:5896541, position: {lat: -33.4184, lng: -70.6396}, decripcion : "Punto Eco-Go Diamond", distancia: 0}
 ];
 
 //Paso 1: inicializar la plataforma
@@ -21,7 +26,7 @@ platform = new H.service.Platform({
    'app_code': 'w1p60cUN3oTM8VhpR1B0ww',
    useHTTPS: true
 });
-
+console.log(window.devicePixelRatio);
 let pixelRatio = window.devicePixelRatio || 1;
 let defaultLayers = platform.createDefaultLayers({
  tileSize: pixelRatio === 1 ? 256 : 512,
@@ -90,6 +95,23 @@ let iconoEcoGo = new H.map.Icon(svgMarkup);
 //crea una marca con la posicion indicada
 let markerUser = new H.map.Marker({ lat: -33.4189088, lng: -70.6422443 });//, { icon: iconoEcoGo });
 map.addObject(markerUser);
+let radioAccion = new H.map.Circle(
+    // Centro del circulo
+    { lat: -33.4189088, lng: -70.6422443 },
+    // radio del circulo en metros
+    250,
+    {
+      style: {
+        strokeColor: 'rgba(55, 85, 170, 0)', // color de la orilla del circulo
+        lineWidth: 0, //ancho de la orilla
+        fillColor: 'rgba(255,255,191, 0.4)'  // color de fondo del circulo
+      }
+    }
+  );
+map.addObject(radioAccion);
+
+
+
 
 listado.innerHTML = '';
 //Coloca las marcas de cada uno de los lugares de reciclaje
@@ -109,6 +131,7 @@ function ordenarLugares(){
  listado.innerHTML = '';
  ecoPlaces.sort(function (a, b) {
    return (a.distancia - b.distancia)
+
  }).forEach(function(ecoMarker) {
  
    addLugares(ecoMarker)
@@ -116,14 +139,24 @@ function ordenarLugares(){
 
 }
 
+function convertTo(data) {
+    if(data > 999){
+        return (data / 1000).toFixed(1) + ' km'; 
+    }
+    else{
+        return data + ' mts';
+    }
+}
+
+
 function addLugares(ecoMarker){
  listado.innerHTML += 
  '<div class="row">' +
  '  <div class="col s12 m6">' +
  '    <div class="card colorTarjeta">' +
  '      <div class="card-content white-text">' +
- '        <span class="card-title">' + ecoMarker.decripcion + ' ('+ ecoMarker.distancia.toFixed(0) +')</span> <!-- Titulo puntos eco-go-->' +
- '        <p class="colorP">' + ecoMarker.decripcion + '</p>' +
+ '        <span class="card-title">' + ecoMarker.decripcion +'</span> <!-- Titulo puntos eco-go-->' +
+ '        <p class="colorP">'+ convertTo(ecoMarker.distancia.toFixed(0)) +'</p>' +
  '      </div>' +
  '      <div class="card-action right-align">' +
  '          <button id="irPunto" type="button" class="btn-floating btn waves-effect waves-light right-align" onclick="goRute(' + ecoMarker.id + ')">IR</i></button>' +
@@ -133,20 +166,26 @@ function addLugares(ecoMarker){
  '</div> '; 
 }
 
-
-
-
 //Actualiza el mapa con la posicion actual cada 1 segundo.
 function updaeteLocation(position) {
-   map.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});
-   markerUser.setPosition({lat:position.coords.latitude, lng:position.coords.longitude});
+   map.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});//centra el mapa en la posicion del usuario
+   markerUser.setPosition({lat:position.coords.latitude, lng:position.coords.longitude});//centra la marca en la posicion del usuario
+   radioAccion.setCenter({lat:position.coords.latitude, lng:position.coords.longitude});//centra el circulo en la posicion del usuario
 
-   ecoPlaces.forEach(function(ecoMarker) {
-     let distancia = ecoMarker.marca.getPosition().distance({lat:position.coords.latitude, lng:position.coords.longitude});
-     ecoMarker.distancia = distancia;
-     console.log( ecoMarker);
-   });
-   ordenarLugares();
+   if(caminando === false){
+    ecoPlaces.forEach(function(ecoMarker) {
+        let distancia = ecoMarker.marca.getPosition().distance({lat:position.coords.latitude, lng:position.coords.longitude});
+        ecoMarker.distancia = distancia;
+        //console.log( ecoMarker);
+      });
+      ordenarLugares();
+   
+   }else{
+    let distancia = selectedMarket.marca.getPosition().distance({lat:position.coords.latitude, lng:position.coords.longitude});
+    radioAccion.setRadius(distancia);
+    distanciaFalta.innerHTML = distancia.toFixed(0) + ' mts';
+    
+   }
 }
 //si hay algun error al geolocalizar se ejcuta
 function errorLocation(error){
@@ -173,18 +212,20 @@ if ('geolocation' in navigator) {
 //evento click del raton para poder hacer la ubicacion de los puntos ecologicos.
 map.addEventListener('tap', function (evt) {
    let coord = map.screenToGeo(evt.currentPointer.viewportX, evt.currentPointer.viewportY);
-   console.log('pinchaste en ' + Math.abs(coord.lat.toFixed(4)) + ((coord.lat > 0) ? 'N' : 'S') + ' ' + Math.abs(coord.lng.toFixed(4)) + ((coord.lng > 0) ? 'E' : 'W'));
+   console.log('pinchaste en  lat:' + coord.lat.toFixed(4) + ' , lng:' + coord.lng.toFixed(4));
 });
 
 //obtiene la ruta del identificador asociado
 function goRute(id){
- console.log("ir a :" + id);
- let ecoFound = ecoPlaces.find(function(ecoMarker) {
-   return ecoMarker.id === id;
- });
- console.log(ecoFound);
-
- //showRoute(ecoFound);
+    let ecoFound = ecoPlaces.find(function(ecoMarker) {
+        return ecoMarker.id === id;
+    });
+    selectedMarket = ecoFound;
+    caminando = true;
+    showRoute(ecoFound);
+    listado.style.display = 'none';
+    let qrContent =document.getElementById("qrContent");
+    qrContent.style.display = 'block';
 }
 
 //consulta la ruta y crea la linea (proximamente)
@@ -199,6 +240,7 @@ function showRoute(ecoFound){
    'waypoint1': 'geo!' + ecoFound.position.lat + ',' + ecoFound.position.lng,
    'representation': 'display'
  };
+
  var onResult = function (result) {
    var route,
        routeShape,
@@ -220,38 +262,14 @@ function showRoute(ecoFound){
            linestring.pushLatLngAlt(parts[0], parts[1]);
        });
 
-       // Retrieve the mapped positions of the requested waypoints:
-       //startPoint = route.waypoint[0].mappedPosition;
-       //endPoint = route.waypoint[1].mappedPosition;
-
-       // Create a polyline to display the route:
        var routeLine = new H.map.Polyline(linestring, {
            style: { strokeColor: 'green', lineWidth: 5 }
        });
-
-       // Create a marker for the start point:
-       /*
-       var startMarker = new H.map.Marker({
-           lat: startPoint.latitude,
-           lng: startPoint.longitude
-       });
-
-       let positionFinal = {
-           lat: endPoint.latitude,
-           lng: endPoint.longitude
-       };
-       var icon = new H.map.Icon(svgMarkup);
-       */
-       // Create a marker for the end point:
-       //var endMarker = new H.map.Marker(positionFinal, { icon: icon });
-
-
-
-       // Add the route polyline and the two markers to the map:
+      // Add the route polyline and the two markers to the map:
        map.addObjects([routeLine]);
-
        // Set the map's viewport to make the whole route visible:
        map.setViewBounds(routeLine.getBounds());
+       watchId = navigator.geolocation.watchPosition(updaeteLocation, errorLocation, optionsGPS);
    }
  };
 
@@ -267,4 +285,11 @@ function showRoute(ecoFound){
 
 
 }
+function qrGo(){
+    console.log(selectedMarket.id);
+    console.log(arma.value);
+    localStorage.setItem("selectId", selectedMarket.id); 
+    localStorage.setItem("selectArma",arma.value);
 
+    window.location = "../html/qrlector.html"
+}

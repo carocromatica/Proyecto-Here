@@ -20,8 +20,8 @@ const constraints = {
   enableVideo.style.display = 'none';
 
   enableVideo.onclick = function() {
-    video.style.display = 'block';
-    screenshotButton.style.display = 'block';
+    video.style.display = 'inline';
+    screenshotButton.style.display = 'inline';
     img.style.display = 'none';
     enableVideo.style.display = 'none';    
   }
@@ -30,13 +30,12 @@ const constraints = {
       canvas.width = video.videoWidth;
       canvas.height = video.videoHeight;
       canvas.getContext('2d').drawImage(video, 0, 0);
-      // Other browsers will fall back to image/png
       img.src = canvas.toDataURL('image/webp');
       
       video.style.display = 'none';
       screenshotButton.style.display = 'none';
-      img.style.display = 'block';
-      enableVideo.style.display = 'block';
+      img.style.display = 'inline';
+      enableVideo.style.display = 'inline';
   };
 
   function handleSuccess(stream) {
@@ -60,40 +59,88 @@ const constraints = {
     return new Blob([u8arr], {type:mime});
   }
 
-    function savePhoto(){
-        console.log("boton guardar");
-        let newRegistroKey = firebase.database().ref().child('registros').push().key;
-        subirArchivo(dataURLtoBlob(img.src), newRegistroKey + '.jpg', newRegistroKey);
-        
-    }
+function SendFB(){
+    let idSelecionado = localStorage.getItem("selectId");
+    let armaSelecionado = localStorage.getItem("selectArma");
+    let qrSelecionado = localStorage.getItem("selectQR");
+
+    
 /*
-  function subirArchivo(archivo, nombre, key) {
-    console.log('Subir Archivo');
-    console.log(archivo);
-    console.log(nombre);
-    let storageService = firebase.storage();
-    // creo una referencia al lugar donde guardaremos el archivo
-    let refStorage = storageService.ref('userImages').child(nombre);
-    // Comienzo la tarea de upload
-    const uploadTask = refStorage.put(archivo);
-    // defino un evento para saber qué pasa con ese upload iniciado
-    uploadTask.on('state_changed', null,
-        function(error){
-            console.log('Error al subir el archivo', error);
-        },
-        function(){
-            //obtiene la url de la imagen recien subida
-            uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                //cambia el source de la imagen por la url de la imagen recien subida
-                console.log('Listo, quedo en :' + downloadURL + ' y la key ' + key);
-                register["urlPicture"] = downloadURL;
-                register["key"] = key;
-                localStorage.setItem('register',JSON.stringify(register));
-                console.log(register);
-                window.location = 'firma.html';
-                //saveData(downloadURL,key);
-              });
+    var blob = dataURLtoBlob(img.src);
+    FB.getLoginStatus(function (response) {
+        console.log(response);
+        if (response.status === "connected") {
+            postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+        } else if (response.status === "not_authorized") {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+            }, {scope: "public_profile, publish_pages, manage_pages"});
+        } else {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+            }, {scope: "public_profile, publish_pages, manage_pages"});
         }
-    );
-}
+    });
 */
+}
+
+function postImageToFacebook(token, filename, mimeType, imageData, message) {
+    var fd = new FormData();
+    fd.append("access_token", token);
+    fd.append("source", imageData);
+    fd.append("no_story", true);
+
+    // Upload image to facebook without story(post to feed)
+    $.ajax({
+        url: "https://graph.facebook.com/me/photos?access_token=" + token,
+        type: "POST",
+        data: fd,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+            console.log("success: ", data);
+
+            // Get image source url
+            FB.api(
+                "/" + data.id + "?fields=images",
+                function (response) {
+                    if (response && !response.error) {
+                        //console.log(response.images[0].source);
+
+                        // Create facebook post using image
+                        FB.api(
+                            "/me/feed",
+                            "POST",
+                            {
+                                "message": "",
+                                "picture": response.images[0].source,
+                                "link": window.location.href,
+                                "name": 'reciclando!',
+                                "description": message,
+                                "privacy": {
+                                    value: 'SELF'
+                                }
+                            },
+                            function (response) {
+                                if (response && !response.error) {
+                                    /* handle the result */
+                                    console.log("postiado en facebook");
+                                    console.log(response);
+                                }
+                            }
+                        );
+                    }
+                }
+            );
+        },
+        error: function (shr, status, data) {
+            console.log("error " + data + " Status " + shr.status);
+        },
+        complete: function (data) {
+        }
+    });
+}
+
+
+ 

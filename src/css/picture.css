@@ -11,5 +11,28 @@
     text-align: center !important;
 }
 
+h5{
+    color:#47525E;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+}
+
+.colorTarjeta{
+    background-color: #E6EEE3;
+}
+
+.card-title{
+    color: #3F4C5E !important;
+}
+
+.colorP{
+    color: #8190A5;
+}
+
+.listContent{
+    margin-top: 30px;
+}
+
 
 
