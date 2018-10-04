@@ -51,6 +51,10 @@ background-color: #96C93D;
 height: 9em;
 
 }
+
+.profile{
+  margin: 0px!important;
+}
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
   .badges{

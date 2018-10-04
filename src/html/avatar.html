@@ -89,16 +89,30 @@
               <img src="../../assets/img/avatars/exportar.png">
               <button class="btn" onclick="selectRobin()">Robin</button>
             </div>
-          </div>
+          </div>         
+            <div class="input-field">
+              <input  id="alias" type="text" class="validate">
+              <label class="active" for="alias">Ingresa tu Alias</label>
+            </div>
+            <button class="btn  modal-trigger" href="#modal1" onclick="createAlias()">Guardar</button>
         </div>
       </div>
     </div>
 
-    <p id="usermail"></p>
-     <p id="asd"></p>
-
+    <p id="puntaje"></p>
 
   </section>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>ganaste 500 puntos!</p>
+      </div>
+      <div class="modal-footer">
+        <a class="waves-effect waves-light btn modal-trigger" href="../html/map.html">empezar</a>
+      </div>
+    </div>
 
 
   <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
