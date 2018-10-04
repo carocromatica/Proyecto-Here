@@ -51,7 +51,7 @@ function selectRobin(){
 
 function selectChica(){
   alert('Elegiste a Chica Ruda')
-  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/IsFXKks.png' class='responsive-img avatar'>";
+  const mono=document.getElementById("milely").innerHTML = "<img id='personaje' src='https://i.imgur.com/IsFXKks.png' class='responsive-img avatar'>";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
