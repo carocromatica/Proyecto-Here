@@ -13,7 +13,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos`)
     .on("child_added", (puntos) => {
       puntaje.innerHTML = `
-      ${puntos.val()}  `     
+      ${puntos.val()} puntos `     
       + puntaje.innerHTML;
     });
 

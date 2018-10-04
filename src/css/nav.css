@@ -56,6 +56,13 @@ height: 9em;
   margin: 0px!important;
   color: white;
   font-weight: bold;
+  
+}
+
+.puntos{
+  margin: 0px!important;
+  color: white;
+  font-weight: bold;
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */
