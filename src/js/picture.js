@@ -82,11 +82,11 @@ function SendFB(){
         } else if (response.status === "not_authorized") {
             FB.login(function (response) {
                 postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "publish_stream, public_profile, publish_pages, manage_pages"});
+            }, {scope: "public_profile, publish_pages, manage_pages"});
         } else {
             FB.login(function (response) {
                 postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "publish_stream, public_profile, publish_pages, manage_pages"});
+            }, {scope: "public_profile, publish_pages, manage_pages"});
         }
     });
 
