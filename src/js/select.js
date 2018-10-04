@@ -10,13 +10,6 @@ firebase.auth().onAuthStateChanged(function (user) {
       + milely.innerHTML;
     });
 
-    firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/nombre`)
-    .on("child_added", (pj) => {
-      nombrepj.innerHTML = `
-      ${pj.val()}  `     
-      + nombrepj.innerHTML;
-    });
-
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos`)
     .on("child_added", (puntos) => {
       puntaje.innerHTML = `
@@ -31,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 function selectElfa(){
   alert('Elegiste a Elfa')
-  const mono=document.getElementById("milely").innerHTML = "<img id='personaje' src='https://i.imgur.com/RQEPG92.png' class='responsive-img avatar'> ";
+  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/RQEPG92.png' class='responsive-img avatar'> ";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
@@ -40,7 +33,7 @@ function selectElfa(){
 
 function selectMago(){
   alert('Elegiste a Mago')
-  const mono=document.getElementById("milely").innerHTML = "<img id='personaje' src='https://i.imgur.com/OD2BpX0.png' class='responsive-img avatar'> ";
+  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/OD2BpX0.png' class='responsive-img avatar'> ";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
@@ -49,7 +42,7 @@ function selectMago(){
 
 function selectRobin(){
   alert('Elegiste a Robin')
-  const mono=document.getElementById("milely").innerHTML = "<img id='personaje' src='https://i.imgur.com/2XvUC8M.png' class='responsive-img avatar'> ";
+  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/2XvUC8M.png' class='responsive-img avatar'> ";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
@@ -58,7 +51,7 @@ function selectRobin(){
 
 function selectChica(){
   alert('Elegiste a Chica Ruda')
-  const mono=document.getElementById("milely").innerHTML = "<img id='personaje' src='https://i.imgur.com/IsFXKks.png' class='responsive-img avatar'>";
+  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/IsFXKks.png' class='responsive-img avatar'>";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
@@ -69,7 +62,7 @@ function createAlias (){
   const puntaje=500;
   const alias=document.getElementById('alias').value;
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
-  firebase.database().ref(`usuarios/${currentUser.uid}/nombre`).update({
+  firebase.database().ref(`usuarios/${currentUser.uid}/nomb`).update({
     alias
   });
 
