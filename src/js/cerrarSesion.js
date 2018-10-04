@@ -2,7 +2,7 @@ function cerrarSesion(){
     firebase.auth().signOut()
     .then(function(){
       console.log('Cerrando sesión....');
-      window.location='../html/login.html'
+      window.location='index.html'
     })
     .catch(function(error){
       console.log(error);
