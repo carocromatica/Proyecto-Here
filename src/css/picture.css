@@ -34,5 +34,20 @@ h5{
     margin-top: 30px;
 }
 
+.link-fb{
+    font-weight: bold;
+    font-size: 1.3em;
+}
 
+.fb-btn{
+    border-radius: 5px;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    background-color: #3b5998;
+}
+
+.fb-icon{
+    font-weight: normal;
+}
 
