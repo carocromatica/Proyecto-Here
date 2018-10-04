@@ -5,7 +5,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/avatar`)
     .on("child_added", (profile) => {
       milely.innerHTML = `
-      <p class="profile">${profile.val()}</p>
+      ${profile.val()}
       `     
       + milely.innerHTML;
     });
@@ -24,7 +24,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
 function selectElfa(){
   alert('Elegiste a Elfa')
-  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/RQEPG92.png' class='responsive-img avatar'> ";
+  document.getElementById("personaje").src = "https://i.imgur.com/RQEPG92.png";
+  const mono="<img id='personaje' src='https://i.imgur.com/RQEPG92.png' class='responsive-img avatar'> ";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
