@@ -20,8 +20,8 @@ const constraints = {
   enableVideo.style.display = 'none';
 
   enableVideo.onclick = function() {
-    video.style.display = 'block';
-    screenshotButton.style.display = 'block';
+    video.style.display = 'inline';
+    screenshotButton.style.display = 'inline';
     img.style.display = 'none';
     enableVideo.style.display = 'none';    
   }
@@ -34,8 +34,8 @@ const constraints = {
       
       video.style.display = 'none';
       screenshotButton.style.display = 'none';
-      img.style.display = 'block';
-      enableVideo.style.display = 'block';
+      img.style.display = 'inline';
+      enableVideo.style.display = 'inline';
   };
 
   function handleSuccess(stream) {
