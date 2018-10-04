@@ -54,6 +54,8 @@ height: 9em;
 
 .profile{
   margin: 0px!important;
+  color: white;
+  font-weight: bold;
 }
 @media only screen and (max-width: 800px) {
   /* For mobile phones: */

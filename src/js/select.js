@@ -4,24 +4,16 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/avatar`)
     .on("child_added", (profile) => {
-
       milely.innerHTML = `
-    
-    
       <p class="profile">${profile.val()}</p>
       `     
       + milely.innerHTML;
     });
 
-
-    firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}`)
+    firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos`)
     .on("child_added", (puntos) => {
-
       puntaje.innerHTML = `
-    
-    
-      <p class="profile">${puntos.val().puntaje}</p>
-      `     
+      ${puntos.val()}  `     
       + puntaje.innerHTML;
     });
 
@@ -29,7 +21,6 @@ firebase.auth().onAuthStateChanged(function (user) {
     window.location = "login.html";
   }
 });
-
 
 function selectElfa(){
   alert('Elegiste a Elfa')
@@ -68,9 +59,30 @@ function selectChica(){
 }
 
 function createAlias (){
+  const puntaje=500;
   const alias=document.getElementById('alias').value;
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     alias
   });
+
+  firebase.database().ref(`usuarios/${currentUser.uid}/puntos`).update({
+    puntaje
+  });
+}
+
+function sumarPuntos(){
+  let puntajeHtml=document.getElementById('puntaje').innerHTML;
+  const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
+  let puntajeActual=parseInt(puntajeHtml);
+  console.log(puntajeActual)
+  let puntajeAgregado=750;
+
+  let puntajeFinal=puntajeActual+puntajeAgregado;
+
+  firebase.database().ref(`usuarios/${currentUser.uid}/puntos`).update({
+    puntaje:puntajeFinal
+  });
+
+
 }
