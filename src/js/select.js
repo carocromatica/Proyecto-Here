@@ -4,10 +4,10 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/avatar`)
     .on("child_added", (profile) => {
-      personaje.innerHTML = `
+      milely.innerHTML = `
       <p class="profile">${profile.val()}</p>
       `     
-      + personaje.innerHTML;
+      + milely.innerHTML;
     });
 
     firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos`)
