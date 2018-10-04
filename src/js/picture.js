@@ -69,22 +69,29 @@ const constraints = {
   */  
 
 function SendFB(){
-
-    var blob = dataURLtoBlob(img.src);
-    FB.getLoginStatus(function (response) {
-        console.log(response);
-        if (response.status === "connected") {
-            postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-        } else if (response.status === "not_authorized") {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "publish_actions"});
+    FB.login(function(response) {
+        if (response.status === 'connected') {
+            var blob = dataURLtoBlob(img.src);
+            FB.getLoginStatus(function (response) {
+                console.log(response);
+                if (response.status === "connected") {
+                    postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+                } else if (response.status === "not_authorized") {
+                    FB.login(function (response) {
+                        postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+                    }, {scope: "publish_actions"});
+                } else {
+                    FB.login(function (response) {
+                        postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+                    }, {scope: "publish_actions"});
+                }
+            });
         } else {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "publish_actions"});
+            alert("Lo siento, no pudiste logearte a facebook");
+          // The person is not logged into this app or we are unable to tell. 
         }
-    });
+      });
+
 }
 
     /*
