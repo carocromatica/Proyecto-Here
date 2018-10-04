@@ -59,14 +59,35 @@ const constraints = {
     console.log('Enviando foto');
     return new Blob([u8arr], {type:mime});
   }
-
+/*
     function savePhoto(){
         console.log("boton guardar");
         let newRegistroKey = firebase.database().ref().child('registros').push().key;
         subirArchivo(dataURLtoBlob(img.src), newRegistroKey + '.jpg', newRegistroKey);
         
     }
-/*
+  */  
+
+function SendFB(){
+
+    var blob = dataURLtoBlob(img.src);
+    FB.getLoginStatus(function (response) {
+        console.log(response);
+        if (response.status === "connected") {
+            postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+        } else if (response.status === "not_authorized") {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+            }, {scope: "publish_actions"});
+        } else {
+            FB.login(function (response) {
+                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
+            }, {scope: "publish_actions"});
+        }
+    });
+}
+
+    /*
   function subirArchivo(archivo, nombre, key) {
     console.log('Subir Archivo');
     console.log(archivo);

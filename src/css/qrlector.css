@@ -1,0 +1,19 @@
+.qrCap {
+    width: 100%;
+}
+
+.imageCaptureQr {
+    padding-top: 30px;
+}
+
+.barraQr{
+    padding-top: 15px;
+    text-align: center !important;
+}
+
+h5{
+    color:#47525E;
+    margin-left: 20px;
+    margin-top: 30px;
+    margin-right: 20px;
+}
