@@ -90,7 +90,7 @@ function SendFB(){
             alert("Lo siento, no pudiste logearte a facebook");
           // The person is not logged into this app or we are unable to tell. 
         }
-      });
+      }, {scope: 'email,user_likes, public_profile'});
 
 }
 
