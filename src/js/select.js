@@ -34,7 +34,8 @@ function selectElfa(){
 
 function selectMago(){
   alert('Elegiste a Mago')
-  const mono=document.getElementById("personaje").innerHTML = "<img id='personaje' src='https://i.imgur.com/OD2BpX0.png' class='responsive-img avatar'> ";
+  document.getElementById("personaje").src = "https://i.imgur.com/OD2BpX0.png";
+  const mono="<img id='personaje' src='https://i.imgur.com/OD2BpX0.png' class='responsive-img avatar'> ";
   const currentUser = firebase.auth().currentUser; // esta indica si estamos logeadas
   firebase.database().ref(`usuarios/${currentUser.uid}/avatar`).update({
     mono
