@@ -18,6 +18,9 @@ nav {
   height: 75px;
 }
 
+.carousel{
+  bottom: 6em;
+}
 
 /*clase propias*/
 .avatar{
