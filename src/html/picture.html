@@ -71,10 +71,27 @@
                 <div class=" fb-btn">
                     <div class="card-content white-text">
                     
-                    <div><span class="link-fb"><a class="white-text" href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Fcarocromatica.github.io%2FProyecto-Here%2F&picture=https%3A%2F%2Fi.imgur.com%2F1u9qQLh.png&name=holo%20&caption=%20&description=ojala%20funcione%20esta%20wea&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F" target="_blank" onclick="window.open(this.href, 'mywin',
-                        'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;">Compartir en Facebook <i class="fab fa-facebook fb-icon"></i> </a></span></div> 
+                    <div>
+                        <span class="link-fb">
+                            <a class="white-text" href="https://www.facebook.com/dialog/feed?app_id=184683071273&link=https%3A%2F%2Fcarocromatica.github.io%2FProyecto-Here%2F&picture=https%3A%2F%2Fi.imgur.com%2F1u9qQLh.png&name=holo%20&caption=%20&description=ojala%20funcione%20esta%20wea&redirect_uri=http%3A%2F%2Fwww.facebook.com%2F" target="_blank" onclick="window.open(this.href, 'mywin',
+                        'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); SendFB(); return false;">Compartir en Facebook <i class="fab fa-facebook fb-icon"></i> </a>
+                        </span></div> 
                         <!--onclick="SendFB()"-->
                     </div>
+                </div>
+            </div>
+
+        </section>
+        <section>
+        <!-- Modal Structure -->
+            <div id="modalPublicar" class="modal">
+                <div class="modal-content center-align">
+                <h4>Felicidades!!!</h4>
+                <p>Ganaste <span id="puntosGanados">...</span> puntos!!!</p>
+                <img class="starimg" src="../../assets/img/star.gif" alt="">
+                </div>
+                <div class="modal-footer">
+                <a href="map.html" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
                 </div>
             </div>
         </section>

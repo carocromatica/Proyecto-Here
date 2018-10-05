@@ -1,4 +1,7 @@
-//contiene js que es importante
+
+
+
+
 const constraints = {
     video: true
   };
@@ -59,87 +62,57 @@ const constraints = {
     return new Blob([u8arr], {type:mime});
   }
 
+
+
 function SendFB(){
+    console.log(firebase.auth().currentUser.uid);
+    console.log('entrando a sendFB');
     let idSelecionado = localStorage.getItem("selectId");
     let armaSelecionado = localStorage.getItem("selectArma");
     let qrSelecionado = localStorage.getItem("selectQR");
+    console.log('arma seleccionada')
+    console.log(armaSelecionado);
+    let Puntos = 0;
+    switch(armaSelecionado) {
+        case '1':
+        Puntos = 100;
+        break;
+        case '2':
+        Puntos = 350;
+        break;
+        case '3':
+        Puntos = 250;
+        break;
+        case '4':
+        Puntos = 450;
+        break;
+    } 
+    console.log('puntos');
+    console.log(Puntos);
+    let puntosObt = 0;
 
+    var review = firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos/puntaje`);
+    review.on('value', function(puntos) {
+      console.log('puntos obtenidos');  
+      console.log(puntos.val());
+      let puntaje = Puntos + puntos.val();
+      console.log('puntos Totales');  
+      console.log(puntaje);
+
+      document.getElementById('puntosGanados').innerHTML = Puntos;
+
+      var instance = M.Modal.getInstance(document.getElementById('modalPublicar'));
+      instance.open();
+      puntosObt  = puntaje;
+    });
+    /*
+    let puntaje = puntosObt;
+    firebase.database().ref(`usuarios/${firebase.auth().currentUser.uid}/puntos`).update({
+        puntaje
+    });
+    */
     
-/*
-    var blob = dataURLtoBlob(img.src);
-    FB.getLoginStatus(function (response) {
-        console.log(response);
-        if (response.status === "connected") {
-            postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-        } else if (response.status === "not_authorized") {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "public_profile, publish_pages, manage_pages"});
-        } else {
-            FB.login(function (response) {
-                postImageToFacebook(response.authResponse.accessToken, "Reciclando!!!", "image/png", blob, window.location.href);
-            }, {scope: "public_profile, publish_pages, manage_pages"});
-        }
-    });
-*/
-}
 
-function postImageToFacebook(token, filename, mimeType, imageData, message) {
-    var fd = new FormData();
-    fd.append("access_token", token);
-    fd.append("source", imageData);
-    fd.append("no_story", true);
-
-    // Upload image to facebook without story(post to feed)
-    $.ajax({
-        url: "https://graph.facebook.com/me/photos?access_token=" + token,
-        type: "POST",
-        data: fd,
-        processData: false,
-        contentType: false,
-        cache: false,
-        success: function (data) {
-            console.log("success: ", data);
-
-            // Get image source url
-            FB.api(
-                "/" + data.id + "?fields=images",
-                function (response) {
-                    if (response && !response.error) {
-                        //console.log(response.images[0].source);
-
-                        // Create facebook post using image
-                        FB.api(
-                            "/me/feed",
-                            "POST",
-                            {
-                                "message": "",
-                                "picture": response.images[0].source,
-                                "link": window.location.href,
-                                "name": 'reciclando!',
-                                "description": message,
-                                "privacy": {
-                                    value: 'SELF'
-                                }
-                            },
-                            function (response) {
-                                if (response && !response.error) {
-                                    /* handle the result */
-                                    console.log("postiado en facebook");
-                                    console.log(response);
-                                }
-                            }
-                        );
-                    }
-                }
-            );
-        },
-        error: function (shr, status, data) {
-            console.log("error " + data + " Status " + shr.status);
-        },
-        complete: function (data) {
-        }
-    });
 }
 
 

@@ -288,8 +288,11 @@ function showRoute(ecoFound){
 function qrGo(){
     console.log(selectedMarket.id);
     console.log(arma.value);
-    localStorage.setItem("selectId", selectedMarket.id); 
-    localStorage.setItem("selectArma",arma.value);
-
-    window.location = "../html/qrlector.html"
+    if(arma.value === ''){
+        alert('debes selecionar un arma.');
+    }else{
+        localStorage.setItem("selectId", selectedMarket.id); 
+        localStorage.setItem("selectArma",arma.value);
+        window.location = "../html/qrlector.html"
+    }
 }

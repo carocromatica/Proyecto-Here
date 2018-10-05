@@ -51,3 +51,20 @@ h5{
     font-weight: normal;
 }
 
+
+.imgCanje{
+    width: 100% !important;
+}
+.textoCanje {
+    margin-left: 0%;
+    padding-left: 0%;
+}
+
+#modal1{
+    border-radius: 6%;
+}
+
+.starimg{
+    width: 200px;
+    height: 200px;
+}
