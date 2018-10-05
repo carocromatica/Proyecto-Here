@@ -3,15 +3,16 @@
     width: 50px !important;
 }
 .divimg{
-    height: 70px !important;
+    height: 20px !important;
+    widows: 20px !important;
 }
 .mundo{
-    height: 2.5em !important;
-    width: 2.5em !important;
+    height: 12em !important;
+    width: 12em !important;
 }
 /* .divmundo{
     height: 100% !important;
-    width: 100%
+    width: 100%v
 } */
 p{
     color: white !important;
@@ -25,8 +26,24 @@ p{
     width: 6em !important;
 }
 .p-lugar{
-    margin-top: 80%;
+    margin-top: 12em;
 }
 .container{
-    margin-top: 2em
+    margin-top: 3em;
+    height: 43em !important;
+}
+.slider{
+    height: 35em !important;
+    
+}
+.slides{
+    background-color: #80cbc4 !important;
+    height: 32em !important;
+
+}
+.listas{
+    height: 37em !important;
+}
+.tamañop{
+    font-size: 10px;
 }
