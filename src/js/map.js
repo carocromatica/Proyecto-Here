@@ -152,7 +152,7 @@ function convertTo(data) {
 function addLugares(ecoMarker){
  listado.innerHTML += 
  '<div class="row">' +
- '  <div class="col s12 m6">' +
+ '  <div class="col s12 m6 offset-m3">' +
  '    <div class="card colorTarjeta">' +
  '      <div class="card-content white-text">' +
  '        <span class="card-title">' + ecoMarker.decripcion +'</span> <!-- Titulo puntos eco-go-->' +
