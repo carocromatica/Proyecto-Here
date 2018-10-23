@@ -1,7 +1,7 @@
-## Proyecto Laboratoria – HERE: Eco Go!
-<p align="center">
-  <img src="https://github.com/Carolinadelb/Proyecto-Here/blob/master/assets/img/logo.png" height="100" width="100">
-</p>
+# Proyecto Laboratoria – HERE: Eco Go!
+
+![Eco-go](https://user-images.githubusercontent.com/17170637/47379851-70475780-d6d2-11e8-95ac-8f4e0802ce58.png)
+
 
 Eco go! Es una aplicación  web que incentiva a las personas a reciclar. Y las ayuda a encontrar “Eco go! Puntos”, por medio del GPS y del mapa de HERE.
  ¿Qué son los “Eco Go! Puntos”?
